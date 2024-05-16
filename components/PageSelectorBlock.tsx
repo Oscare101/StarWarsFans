@@ -14,6 +14,7 @@ import {StarWarsData, Theme} from '../constants/interfaces';
 import Icon from './Icon';
 import {GetDataRequest} from '../functions/actions';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
+import PageCountBlock from './PageCountBlock';
 
 const width = Dimensions.get('screen').width;
 
@@ -33,20 +34,6 @@ export default function PageSelectorBlock() {
     const response = await GetDataRequest(url);
     dispatch(updateStarWarsData(response));
     setLoading(false);
-  }
-
-  function GetPageNumber() {
-    const page = starWarsData.next
-      ? +starWarsData.next?.split('page=')[1] - 1
-      : starWarsData.previous
-      ? +starWarsData.previous?.split('page=')[1] + 1
-      : '';
-
-    return page;
-  }
-
-  function GetPageAmount() {
-    return Math.ceil(starWarsData.count / 10);
   }
 
   return (
@@ -73,9 +60,7 @@ export default function PageSelectorBlock() {
           <></>
         )}
       </TouchableOpacity>
-      <Text>
-        {GetPageNumber()}/{GetPageAmount()}
-      </Text>
+      <PageCountBlock />
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => GetData(starWarsData.next)}
@@ -97,13 +82,12 @@ export default function PageSelectorBlock() {
 
 const styles = StyleSheet.create({
   card: {
-    height: width * 0.15,
+    height: width * 0.2,
     width: width * 0.92,
     marginBottom: width * 0.04,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // padding: width * 0.02,
     borderRadius: width * 0.02,
     borderWidth: 1,
   },
