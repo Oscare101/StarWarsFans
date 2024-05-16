@@ -1,4 +1,5 @@
 import {
+  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -18,8 +19,10 @@ export default function MainScreen() {
   );
   const dispatch = useDispatch();
 
-  async function GetData() {
-    const response = await GetDataRequest();
+  async function GetData(url?: string) {
+    const response = await GetDataRequest(url);
+    console.log(response);
+
     dispatch(updateStarWarsData(response));
   }
 
@@ -39,6 +42,7 @@ export default function MainScreen() {
     <SafeAreaView style={styles.container}>
       <Text>MainScreen</Text>
       <FlatList data={starWarsData?.results} renderItem={RenderItem} />
+      <Button title="a" onPress={() => GetData(starWarsData.next)} />
     </SafeAreaView>
   );
 }
