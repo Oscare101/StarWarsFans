@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingVertical: width * 0.1,
   },
   heartButton: {
     // height: '100%',

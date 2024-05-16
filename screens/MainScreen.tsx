@@ -17,6 +17,7 @@ import {RootState} from '../redux';
 import colors from '../constants/colors';
 import {Theme} from '../constants/interfaces';
 import RenderCharacterItem from '../components/RenderCharacterItem';
+import PageSelectorBlock from '../components/PageSelectorBlock';
 
 const width = Dimensions.get('screen').width;
 
@@ -50,6 +51,7 @@ export default function MainScreen() {
         ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
       />
       {/* <Button title="a" onPress={() => GetData(starWarsData.next)} /> */}
+      <PageSelectorBlock />
     </SafeAreaView>
   );
 }

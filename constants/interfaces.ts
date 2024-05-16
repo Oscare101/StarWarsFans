@@ -3,5 +3,5 @@ export interface Theme {
 }
 
 export interface IconName {
-  value: 'heart' | 'heartFull';
+  value: 'heart' | 'heartFull' | 'chevronLeft' | 'chevronRight';
 }

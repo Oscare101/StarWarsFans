@@ -15,6 +15,20 @@ function HeartFull(color: string) {
 `;
 }
 
+function ChevronLeft(color: string) {
+  return `<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M328 112L184 256L328 400" stroke=${color} stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+}
+
+function ChevronRight(color: string) {
+  return `<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M184 112L328 256L184 400" stroke=${color} stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+}
+
 export default function Icon(props: {
   icon: IconName['value'];
   size: number;
@@ -27,6 +41,20 @@ export default function Icon(props: {
     heartFull: (
       <SvgXml
         xml={HeartFull(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    chevronLeft: (
+      <SvgXml
+        xml={ChevronLeft(props.color)}
+        width={props.size}
+        height={props.size}
+      />
+    ),
+    chevronRight: (
+      <SvgXml
+        xml={ChevronRight(props.color)}
         width={props.size}
         height={props.size}
       />
