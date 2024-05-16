@@ -1,5 +1,6 @@
 import {
   Button,
+  Dimensions,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -15,20 +16,22 @@ import {updateStarWarsData} from '../redux/starWarsDataSlice';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
 import {Theme} from '../constants/interfaces';
+import RenderCharacterItem from '../components/RenderCharacterItem';
+
+const width = Dimensions.get('screen').width;
 
 export default function MainScreen() {
-  const starWarsData: any = useSelector(
-    (state: RootState) => state.starWarsData,
-  );
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
+  const starWarsData: any = useSelector(
+    (state: RootState) => state.starWarsData,
+  );
+
   const dispatch = useDispatch();
 
   async function GetData(url?: string) {
     const response = await GetDataRequest(url);
-    console.log(response);
-
     dispatch(updateStarWarsData(response));
   }
 
@@ -36,19 +39,17 @@ export default function MainScreen() {
     GetData();
   }, []);
 
-  function RenderItem({item}: any) {
-    return (
-      <TouchableOpacity>
-        <Text>{item.name}</Text>
-      </TouchableOpacity>
-    );
-  }
-
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      <FlatList data={starWarsData?.results} renderItem={RenderItem} />
-      <Button title="a" onPress={() => GetData(starWarsData.next)} />
+      <FlatList
+        data={starWarsData?.results}
+        renderItem={(item: any) => (
+          <RenderCharacterItem item={item.item} theme={themeColor} />
+        )}
+        ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
+      />
+      {/* <Button title="a" onPress={() => GetData(starWarsData.next)} /> */}
     </SafeAreaView>
   );
 }
