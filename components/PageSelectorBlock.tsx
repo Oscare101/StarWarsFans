@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 import colors from '../constants/colors';
 import {RootState} from '../redux';
 import {useDispatch, useSelector} from 'react-redux';
-import {Theme} from '../constants/interfaces';
+import {StarWarsData, Theme} from '../constants/interfaces';
 import Icon from './Icon';
 import {GetDataRequest} from '../functions/actions';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
@@ -21,14 +21,14 @@ export default function PageSelectorBlock() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
-  const starWarsData: any = useSelector(
+  const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  async function GetData(url?: string) {
+  async function GetData(url?: StarWarsData['next']) {
     setLoading(true);
     const response = await GetDataRequest(url);
     dispatch(updateStarWarsData(response));
@@ -46,7 +46,7 @@ export default function PageSelectorBlock() {
       ]}>
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => GetData(starWarsData?.previous)}
+        onPress={() => GetData(starWarsData.previous)}
         disabled={!starWarsData?.previous || loading}>
         {starWarsData?.previous ? (
           <Icon
@@ -60,7 +60,7 @@ export default function PageSelectorBlock() {
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => GetData(starWarsData?.next)}
+        onPress={() => GetData(starWarsData.next)}
         disabled={!starWarsData?.next || loading}>
         {starWarsData?.next ? (
           <Icon

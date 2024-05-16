@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
-import {Theme} from '../constants/interfaces';
+import {StarWarsData, Theme} from '../constants/interfaces';
 import RenderCharacterItem from '../components/RenderCharacterItem';
 import PageSelectorBlock from '../components/PageSelectorBlock';
 import LoadingWarning from '../components/LoadingWarning';
@@ -26,7 +26,7 @@ export default function MainScreen() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
-  const starWarsData: any = useSelector(
+  const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );
 
@@ -44,9 +44,9 @@ export default function MainScreen() {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      {!starWarsData?.results?.length ? (
+      {starWarsData?.results?.length ? (
         <FlatList
-          data={starWarsData?.results}
+          data={starWarsData.results}
           renderItem={(item: any) => (
             <RenderCharacterItem item={item.item} theme={themeColor} />
           )}

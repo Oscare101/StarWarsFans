@@ -1,3 +1,10 @@
+export interface StarWarsData {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: any[];
+}
+
 export interface Theme {
   value: 'dark' | 'light';
 }
