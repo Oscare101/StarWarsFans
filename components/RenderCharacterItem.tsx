@@ -19,7 +19,14 @@ export default function RenderCharacterItem(props: {
   return (
     <TouchableOpacity
       style={[styles.card, {backgroundColor: colors[props.theme].card}]}>
-      <Icon icon="heart" color={colors[props.theme].main} size={width * 0.06} />
+      <TouchableOpacity style={styles.heartButton}>
+        <Icon
+          icon="heart"
+          color={colors[props.theme].main}
+          size={width * 0.06}
+        />
+      </TouchableOpacity>
+
       <Text style={[styles.name, {color: colors[props.theme].main}]}>
         {props.item.name}
       </Text>
@@ -35,6 +42,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+  },
+  heartButton: {
+    // height: '100%',
+    // width: width * 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   name: {
     fontSize: width * 0.05,
