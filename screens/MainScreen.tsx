@@ -18,6 +18,7 @@ import colors from '../constants/colors';
 import {Theme} from '../constants/interfaces';
 import RenderCharacterItem from '../components/RenderCharacterItem';
 import PageSelectorBlock from '../components/PageSelectorBlock';
+import LoadingWarning from '../components/LoadingWarning';
 
 const width = Dimensions.get('screen').width;
 
@@ -43,14 +44,17 @@ export default function MainScreen() {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      <FlatList
-        data={starWarsData?.results}
-        renderItem={(item: any) => (
-          <RenderCharacterItem item={item.item} theme={themeColor} />
-        )}
-        ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
-      />
-      {/* <Button title="a" onPress={() => GetData(starWarsData.next)} /> */}
+      {!starWarsData?.results?.length ? (
+        <FlatList
+          data={starWarsData?.results}
+          renderItem={(item: any) => (
+            <RenderCharacterItem item={item.item} theme={themeColor} />
+          )}
+          ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
+        />
+      ) : (
+        <LoadingWarning />
+      )}
       <PageSelectorBlock />
     </SafeAreaView>
   );
