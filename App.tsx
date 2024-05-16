@@ -1,6 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import 'react-native-gesture-handler';
+import {Provider} from 'react-redux';
+import {store} from './redux/store';
 import React, {useEffect} from 'react';
 import {GetDataRequest} from './functions/actions';
+import {NavigationContainer} from '@react-navigation/native';
+import AppComponent from './components/AppComponent';
 
 export default function App() {
   async function GetData() {
@@ -13,10 +17,8 @@ export default function App() {
   }, []);
 
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <Provider store={store}>
+      <AppComponent />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({});
