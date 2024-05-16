@@ -35,6 +35,20 @@ export default function PageSelectorBlock() {
     setLoading(false);
   }
 
+  function GetPageNumber() {
+    const page = starWarsData.next
+      ? +starWarsData.next?.split('page=')[1] - 1
+      : starWarsData.previous
+      ? +starWarsData.previous?.split('page=')[1] + 1
+      : '';
+
+    return page;
+  }
+
+  function GetPageAmount() {
+    return Math.ceil(starWarsData.count / 10);
+  }
+
   return (
     <View
       style={[
@@ -47,7 +61,8 @@ export default function PageSelectorBlock() {
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => GetData(starWarsData.previous)}
-        disabled={!starWarsData?.previous || loading}>
+        disabled={!starWarsData?.previous || loading}
+        style={styles.pageButton}>
         {starWarsData?.previous ? (
           <Icon
             icon="chevronLeft"
@@ -58,10 +73,14 @@ export default function PageSelectorBlock() {
           <></>
         )}
       </TouchableOpacity>
+      <Text>
+        {GetPageNumber()}/{GetPageAmount()}
+      </Text>
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => GetData(starWarsData.next)}
-        disabled={!starWarsData?.next || loading}>
+        disabled={!starWarsData?.next || loading}
+        style={styles.pageButton}>
         {starWarsData?.next ? (
           <Icon
             icon="chevronRight"
@@ -78,13 +97,20 @@ export default function PageSelectorBlock() {
 
 const styles = StyleSheet.create({
   card: {
+    height: width * 0.15,
     width: width * 0.92,
-    marginVertical: width * 0.04,
+    marginBottom: width * 0.04,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: width * 0.02,
+    // padding: width * 0.02,
     borderRadius: width * 0.02,
     borderWidth: 1,
+  },
+  pageButton: {
+    height: '100%',
+    aspectRatio: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
