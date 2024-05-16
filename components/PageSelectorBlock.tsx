@@ -6,7 +6,7 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import colors from '../constants/colors';
 import {RootState} from '../redux';
 import {useDispatch, useSelector} from 'react-redux';
@@ -26,9 +26,13 @@ export default function PageSelectorBlock() {
   );
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   async function GetData(url?: string) {
+    setLoading(true);
     const response = await GetDataRequest(url);
     dispatch(updateStarWarsData(response));
+    setLoading(false);
   }
 
   return (
@@ -43,7 +47,7 @@ export default function PageSelectorBlock() {
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => GetData(starWarsData?.previous)}
-        disabled={!starWarsData?.previous}>
+        disabled={!starWarsData?.previous || loading}>
         {starWarsData?.previous ? (
           <Icon
             icon="chevronLeft"
@@ -57,7 +61,7 @@ export default function PageSelectorBlock() {
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => GetData(starWarsData?.next)}
-        disabled={!starWarsData?.next}>
+        disabled={!starWarsData?.next || loading}>
         {starWarsData?.next ? (
           <Icon
             icon="chevronRight"
