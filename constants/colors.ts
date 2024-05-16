@@ -1,4 +1,4 @@
-const colors = {
+const colors: any = {
   light: {
     bg: '#F2F4F5',
     card: '#FFFFFF',
