@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import availableTransfersReducer from './availableTransfers';
+import starWarsDataSliceReducer from './starWarsDataSlice';
 
 export const store = configureStore({
   reducer: {
-    availableTransfers: availableTransfersReducer,
+    starWarsData: starWarsDataSliceReducer,
   },
 });

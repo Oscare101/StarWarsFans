@@ -5,6 +5,7 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
+import MainNavigation from '../navigation/MainNavigation';
 
 export default function AppComponent() {
   const themeColor = 'dark';
@@ -16,7 +17,7 @@ export default function AppComponent() {
       />
       <NavigationContainer
         theme={themeColor === 'dark' ? DarkTheme : DefaultTheme}>
-        <></>
+        <MainNavigation />
       </NavigationContainer>
     </>
   );
