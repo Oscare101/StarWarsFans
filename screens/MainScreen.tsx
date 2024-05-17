@@ -26,7 +26,7 @@ const width = Dimensions.get('screen').width;
 export default function MainScreen() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
-  const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
+  const themeColor: any = theme === 'system' ? systemTheme : theme;
   const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );

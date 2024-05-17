@@ -4,10 +4,7 @@ const themeSlice = createSlice({
   name: 'theme',
   initialState: 'system', // dark light
   reducers: {
-    updateTheme: (
-      state,
-      action: PayloadAction<'dark' | 'light' | 'system'>,
-    ) => {
+    updateTheme: (state, action: PayloadAction<string>) => {
       return action.payload;
     },
   },

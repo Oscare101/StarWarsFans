@@ -21,14 +21,13 @@ const width = Dimensions.get('screen').width;
 function PageSelectorBlock() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
-  const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
+  const themeColor: any = theme === 'system' ? systemTheme : theme;
   const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState<boolean>(false);
-  console.log('load');
 
   async function GetData(url?: StarWarsData['next']) {
     setLoading(true);
