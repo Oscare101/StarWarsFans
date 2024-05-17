@@ -6,6 +6,7 @@ const colors: any = {
     main: '#374951',
     comment: '#B6BBBC',
     accent: '#59B9E0',
+    red: {bg: '#FF8F8F', main: '#940707'},
   },
   dark: {
     bg: '#000000',
@@ -14,6 +15,7 @@ const colors: any = {
     main: '#D4DBDF',
     comment: '#606465',
     accent: '#4996B7',
+    red: {bg: '#5C3131', main: '#E14646'},
   },
 };
 

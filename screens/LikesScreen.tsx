@@ -1,4 +1,10 @@
-import {FlatList, SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import Header from '../components/global/Header';
 import LikedPageSelectorBlock from '../components/likes/LikedPageSelectorBlock';
@@ -14,6 +20,9 @@ import {
   GetUpdatedLikedCharacters,
 } from '../functions/functions';
 import {Character} from '../constants/interfaces';
+import ResetButton from '../components/likes/ResetButton';
+
+const width = Dimensions.get('screen').width;
 
 export default function LikesScreen({navigation, route}: any) {
   const [page, setPage] = useState<string>(route.params.page);
@@ -77,6 +86,7 @@ export default function LikesScreen({navigation, route}: any) {
           />
         )}
       />
+      <ResetButton />
     </SafeAreaView>
   );
 }
@@ -87,5 +97,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    gap: width * 0.02,
   },
 });
