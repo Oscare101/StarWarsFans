@@ -1,4 +1,4 @@
-import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import React, {useEffect} from 'react';
 import {
   DarkTheme,
@@ -7,7 +7,6 @@ import {
 } from '@react-navigation/native';
 import MainNavigation from '../navigation/MainNavigation';
 import colors from '../constants/colors';
-import {Theme} from '../constants/interfaces';
 import {RootState} from '../redux';
 import {useSelector} from 'react-redux';
 import {MMKV} from 'react-native-mmkv';
@@ -41,5 +40,3 @@ export default function AppComponent() {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

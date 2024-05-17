@@ -7,6 +7,7 @@ import MainScreen from '../screens/MainScreen';
 import LaunchScreen from '../screens/LaunchScreen';
 import CharacterInfoScreen from '../screens/CharacterInfoScreen';
 import LikesScreen from '../screens/LikesScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,18 @@ export default function MainNavigation() {
         }}
         name="LikesScreen"
         component={LikesScreen}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          headerLeft: () => null,
+          animationEnabled: true,
+          gestureDirection: 'horizontal',
+          gestureEnabled: true,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+        name="SettingsScreen"
+        component={SettingsScreen}
       />
     </Stack.Navigator>
   );

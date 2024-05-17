@@ -9,7 +9,6 @@ import React, {memo} from 'react';
 import {Theme} from '../constants/interfaces';
 import colors from '../constants/colors';
 import Icon from './Icon';
-import theme from '../redux/theme';
 
 const width = Dimensions.get('screen').width;
 

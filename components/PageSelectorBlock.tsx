@@ -1,7 +1,6 @@
 import {
   Dimensions,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
   useColorScheme,
@@ -10,7 +9,7 @@ import React, {memo, useState} from 'react';
 import colors from '../constants/colors';
 import {RootState} from '../redux';
 import {useDispatch, useSelector} from 'react-redux';
-import {StarWarsData, Theme} from '../constants/interfaces';
+import {StarWarsData} from '../constants/interfaces';
 import Icon from './Icon';
 import {GetDataRequest} from '../functions/actions';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';

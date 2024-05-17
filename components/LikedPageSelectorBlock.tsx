@@ -27,6 +27,7 @@ export default function LikedPageSelectorBlock(props: {
     <View style={[styles.card, {backgroundColor: colors[themeColor].card}]}>
       {data.map((item: any, index: number) => (
         <TouchableOpacity
+          key={index}
           activeOpacity={0.8}
           onPress={() => props.onSelect(item)}
           style={[

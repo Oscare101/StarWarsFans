@@ -16,6 +16,7 @@ import {
   GetFilteredOtherCharacters,
 } from '../functions/functions';
 import {useNavigation} from '@react-navigation/native';
+import Icon from './Icon';
 
 const width = Dimensions.get('screen').width;
 
@@ -45,7 +46,9 @@ export default function MainHeader() {
   return (
     <>
       {/* TODO */}
-      {/* <TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('SettingsScreen')}>
         <Icon
           icon="settings"
           color={colors[themeColor].main}
@@ -54,7 +57,7 @@ export default function MainHeader() {
       </TouchableOpacity>
       <Text style={[styles.title, {color: colors[themeColor].main}]}>
         Star Wars Characters
-      </Text> */}
+      </Text>
       <View style={[styles.header, {backgroundColor: colors[themeColor].bg}]}>
         {data.map((item: any, index: number) => (
           <TouchableOpacity

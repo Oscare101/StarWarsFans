@@ -1,29 +1,17 @@
-import {
-  Button,
-  Dimensions,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  useColorScheme,
-} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import {FlatList, SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
 import {GetDataRequest} from '../functions/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
-import {StarWarsData, Theme} from '../constants/interfaces';
+import {StarWarsData} from '../constants/interfaces';
 import RenderCharacterItem from '../components/RenderCharacterItem';
 import PageSelectorBlock from '../components/PageSelectorBlock';
 import LoadingWarning from '../components/LoadingWarning';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 import MainHeader from '../components/MainHeader';
 import {GetUpdatedLikedCharacters} from '../functions/functions';
-
-const width = Dimensions.get('screen').width;
 
 export default function MainScreen({navigation}: any) {
   const systemTheme = useColorScheme();

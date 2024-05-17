@@ -1,11 +1,4 @@
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  useColorScheme,
-} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import Header from '../components/Header';
 import LikedPageSelectorBlock from '../components/LikedPageSelectorBlock';
