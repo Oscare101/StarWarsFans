@@ -6,14 +6,14 @@ import {
   View,
 } from 'react-native';
 import React, {memo} from 'react';
-import {Theme} from '../../constants/interfaces';
+import {Character, Theme} from '../../constants/interfaces';
 import colors from '../../constants/colors';
 import Icon from '../icons/Icon';
 
 const width = Dimensions.get('screen').width;
 
 function RenderCharacterItem(props: {
-  item: any;
+  item: Character;
   theme: Theme['value'];
   onLikeCharacter: any;
   liked: boolean;

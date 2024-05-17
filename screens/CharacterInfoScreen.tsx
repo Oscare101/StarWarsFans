@@ -16,11 +16,12 @@ import Header from '../components/global/Header';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 import {GetUpdatedLikedCharacters} from '../functions/functions';
 import LikeBlock from '../components/character/LikeBlock';
+import {Character} from '../constants/interfaces';
 
 const width = Dimensions.get('screen').width;
 
 export default function CharacterInfoScreen({navigation, route}: any) {
-  const character = route.params.character;
+  const character: Character = route.params.character;
 
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);

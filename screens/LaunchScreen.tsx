@@ -12,10 +12,8 @@ import {updateTheme} from '../redux/theme';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 
 export const storage = new MMKV();
-const width = Dimensions.get('screen').width;
 
 export default function LaunchScreen({navigation}: any) {
-  const themeColor: any = useColorScheme();
   const dispatch = useDispatch();
 
   function GetStorage() {

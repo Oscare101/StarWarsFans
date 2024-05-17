@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
-import {StarWarsData} from '../constants/interfaces';
+import {Character, StarWarsData} from '../constants/interfaces';
 import RenderCharacterItem from '../components/character/RenderCharacterItem';
 import PageSelectorBlock from '../components/main/PageSelectorBlock';
 import LoadingWarning from '../components/main/LoadingWarning';
@@ -20,7 +20,7 @@ export default function MainScreen({navigation}: any) {
   const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );
-  const likedCharacters: any[] = useSelector(
+  const likedCharacters: Character[] = useSelector(
     (state: RootState) => state.likedCharacters,
   );
 
@@ -60,9 +60,9 @@ export default function MainScreen({navigation}: any) {
               onLikeCharacter={() => {
                 LikeCharacter(item.item);
               }}
-              liked={likedCharacters.find(
-                (c: any) => c.name === item.item.name,
-              )}
+              liked={
+                !!likedCharacters.find((c: any) => c.name === item.item.name)
+              }
               onNavigation={() => {
                 navigation.navigate('CharacterInfoScreen', {
                   character: item.item,

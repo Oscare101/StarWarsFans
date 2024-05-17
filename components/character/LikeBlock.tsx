@@ -7,6 +7,7 @@ import {RootState} from '../../redux';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateLikedCharacters} from '../../redux/likedCharacters';
 import {GetUpdatedLikedCharacters} from '../../functions/functions';
+import {Character} from '../../constants/interfaces';
 
 const width = Dimensions.get('screen').width;
 
@@ -14,7 +15,7 @@ export default function LikeBlock(props: {character: any}) {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
-  const likedCharacters: any[] = useSelector(
+  const likedCharacters: Character[] = useSelector(
     (state: RootState) => state.likedCharacters,
   );
 
@@ -28,7 +29,7 @@ export default function LikeBlock(props: {character: any}) {
     );
   }
 
-  const liked: boolean = likedCharacters.find(
+  const liked: boolean = !!likedCharacters.find(
     (c: any) => c.name === props.character.name,
   );
 

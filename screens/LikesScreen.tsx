@@ -13,6 +13,7 @@ import {
   GetFilteredOtherCharacters,
   GetUpdatedLikedCharacters,
 } from '../functions/functions';
+import {Character} from '../constants/interfaces';
 
 export default function LikesScreen({navigation, route}: any) {
   const [page, setPage] = useState<string>(route.params.page);
@@ -20,7 +21,7 @@ export default function LikesScreen({navigation, route}: any) {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
-  const likedCharacters: any[] = useSelector(
+  const likedCharacters: Character[] = useSelector(
     (state: RootState) => state.likedCharacters,
   );
   const dispatch = useDispatch();
@@ -65,7 +66,9 @@ export default function LikesScreen({navigation, route}: any) {
             onLikeCharacter={() => {
               LikeCharacter(item.item);
             }}
-            liked={likedCharacters.find((c: any) => c.name === item.item.name)}
+            liked={
+              !!likedCharacters.find((c: any) => c.name === item.item.name)
+            }
             onNavigation={() => {
               navigation.navigate('CharacterInfoScreen', {
                 character: item.item,

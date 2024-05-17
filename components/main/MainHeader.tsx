@@ -17,6 +17,7 @@ import {
 } from '../../functions/functions';
 import {useNavigation} from '@react-navigation/native';
 import Icon from '../icons/Icon';
+import {Character} from '../../constants/interfaces';
 
 const width = Dimensions.get('screen').width;
 
@@ -24,7 +25,7 @@ function MainHeader() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
-  const likedCharacters: any[] = useSelector(
+  const likedCharacters: Character[] = useSelector(
     (state: RootState) => state.likedCharacters,
   );
   const navigation: any = useNavigation();
@@ -60,7 +61,7 @@ function MainHeader() {
         </Text>
       </View>
 
-      <View style={[styles.row]}>
+      <View style={styles.row}>
         {data.map((item: any, index: number) => (
           <TouchableOpacity
             style={[
