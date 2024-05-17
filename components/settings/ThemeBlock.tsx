@@ -2,10 +2,11 @@ import {Dimensions, StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {MMKV} from 'react-native-mmkv';
-import {RootState} from '../redux';
-import colors from '../constants/colors';
-import {updateTheme} from '../redux/theme';
+import {RootState} from '../../redux';
+import colors from '../../constants/colors';
+import {updateTheme} from '../../redux/theme';
 import ThemePreview from './ThemePreview';
+
 export const storage = new MMKV();
 
 const width = Dimensions.get('screen').width;

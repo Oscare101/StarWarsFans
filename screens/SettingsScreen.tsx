@@ -9,8 +9,8 @@ import React from 'react';
 import {RootState} from '../redux';
 import {useSelector} from 'react-redux';
 import colors from '../constants/colors';
-import Header from '../components/Header';
-import ThemeBlock from '../components/ThemeBlock';
+import Header from '../components/global/Header';
+import ThemeBlock from '../components/settings/ThemeBlock';
 
 export default function SettingsScreen() {
   const systemTheme = useColorScheme();

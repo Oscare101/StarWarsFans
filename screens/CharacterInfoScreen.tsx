@@ -11,8 +11,8 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
-import Icon from '../components/Icon';
-import Header from '../components/Header';
+import Icon from '../components/icons/Icon';
+import Header from '../components/global/Header';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 import {GetUpdatedLikedCharacters} from '../functions/functions';
 

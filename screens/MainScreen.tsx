@@ -6,11 +6,11 @@ import {updateStarWarsData} from '../redux/starWarsDataSlice';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
 import {StarWarsData} from '../constants/interfaces';
-import RenderCharacterItem from '../components/RenderCharacterItem';
-import PageSelectorBlock from '../components/PageSelectorBlock';
-import LoadingWarning from '../components/LoadingWarning';
+import RenderCharacterItem from '../components/character/RenderCharacterItem';
+import PageSelectorBlock from '../components/main/PageSelectorBlock';
+import LoadingWarning from '../components/main/LoadingWarning';
 import {updateLikedCharacters} from '../redux/likedCharacters';
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../components/main/MainHeader';
 import {GetUpdatedLikedCharacters} from '../functions/functions';
 
 export default function MainScreen({navigation}: any) {

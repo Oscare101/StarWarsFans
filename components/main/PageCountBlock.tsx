@@ -4,11 +4,11 @@ import {
   GetPageAmount,
   GetPageNumber,
   MakePageArray,
-} from '../functions/functions';
-import {RootState} from '../redux';
+} from '../../functions/functions';
+import {RootState} from '../../redux';
 import {useSelector} from 'react-redux';
-import {StarWarsData, Theme} from '../constants/interfaces';
-import colors from '../constants/colors';
+import {StarWarsData, Theme} from '../../constants/interfaces';
+import colors from '../../constants/colors';
 
 const width = Dimensions.get('screen').width;
 

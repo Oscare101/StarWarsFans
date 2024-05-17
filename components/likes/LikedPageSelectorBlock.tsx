@@ -7,9 +7,9 @@ import {
   useColorScheme,
 } from 'react-native';
 import React from 'react';
-import {RootState} from '../redux';
+import {RootState} from '../../redux';
 import {useSelector} from 'react-redux';
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
 const width = Dimensions.get('screen').width;
 

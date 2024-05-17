@@ -6,21 +6,21 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React from 'react';
-import {RootState} from '../redux';
+import React, {memo} from 'react';
+import {RootState} from '../../redux';
 import {useSelector} from 'react-redux';
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import {
   GetFilteredFemaleCharacters,
   GetFilteredMaleCharacters,
   GetFilteredOtherCharacters,
-} from '../functions/functions';
+} from '../../functions/functions';
 import {useNavigation} from '@react-navigation/native';
-import Icon from './Icon';
+import Icon from '../icons/Icon';
 
 const width = Dimensions.get('screen').width;
 
-export default function MainHeader() {
+function MainHeader() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
@@ -45,20 +45,22 @@ export default function MainHeader() {
 
   return (
     <>
-      {/* TODO */}
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate('SettingsScreen')}>
-        <Icon
-          icon="settings"
-          color={colors[themeColor].main}
-          size={width * 0.06}
-        />
-      </TouchableOpacity>
-      <Text style={[styles.title, {color: colors[themeColor].main}]}>
-        Star Wars Characters
-      </Text>
-      <View style={[styles.header, {backgroundColor: colors[themeColor].bg}]}>
+      <View style={styles.row}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon
+            icon="settings"
+            color={colors[themeColor].main}
+            size={width * 0.06}
+          />
+        </TouchableOpacity>
+        <Text style={[styles.title, {color: colors[themeColor].main}]}>
+          Star Wars Characters
+        </Text>
+      </View>
+
+      <View style={[styles.row]}>
         {data.map((item: any, index: number) => (
           <TouchableOpacity
             style={[
@@ -89,7 +91,7 @@ export default function MainHeader() {
 }
 
 const styles = StyleSheet.create({
-  header: {
+  row: {
     width: '92%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -111,3 +113,5 @@ const styles = StyleSheet.create({
   likedAmount: {fontSize: width * 0.06},
   likedTitle: {fontSize: width * 0.05, fontWeight: '300'},
 });
+
+export default memo(MainHeader);

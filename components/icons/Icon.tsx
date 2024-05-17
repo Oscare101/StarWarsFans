@@ -1,5 +1,5 @@
 import {SvgXml} from 'react-native-svg';
-import {IconName} from '../constants/interfaces';
+import {IconName} from '../../constants/interfaces';
 
 function Heart(color: string) {
   return `<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">

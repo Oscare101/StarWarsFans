@@ -1,11 +1,11 @@
 import {FlatList, SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
 import React, {useCallback, useState} from 'react';
-import Header from '../components/Header';
-import LikedPageSelectorBlock from '../components/LikedPageSelectorBlock';
+import Header from '../components/global/Header';
+import LikedPageSelectorBlock from '../components/likes/LikedPageSelectorBlock';
 import colors from '../constants/colors';
 import {RootState} from '../redux';
 import {useDispatch, useSelector} from 'react-redux';
-import RenderCharacterItem from '../components/RenderCharacterItem';
+import RenderCharacterItem from '../components/character/RenderCharacterItem';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 import {
   GetFilteredFemaleCharacters,

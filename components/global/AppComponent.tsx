@@ -5,9 +5,9 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import MainNavigation from '../navigation/MainNavigation';
-import colors from '../constants/colors';
-import {RootState} from '../redux';
+import MainNavigation from '../../navigation/MainNavigation';
+import colors from '../../constants/colors';
+import {RootState} from '../../redux';
 import {useSelector} from 'react-redux';
 import {MMKV} from 'react-native-mmkv';
 

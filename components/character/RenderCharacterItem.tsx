@@ -6,9 +6,9 @@ import {
   View,
 } from 'react-native';
 import React, {memo} from 'react';
-import {Theme} from '../constants/interfaces';
-import colors from '../constants/colors';
-import Icon from './Icon';
+import {Theme} from '../../constants/interfaces';
+import colors from '../../constants/colors';
+import Icon from '../icons/Icon';
 
 const width = Dimensions.get('screen').width;
 

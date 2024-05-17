@@ -7,10 +7,10 @@ import {
   useColorScheme,
 } from 'react-native';
 import React, {memo} from 'react';
-import Icon from './Icon';
-import {RootState} from '../redux';
+import Icon from '../icons/Icon';
+import {RootState} from '../../redux';
 import {useSelector} from 'react-redux';
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
 
 const width = Dimensions.get('screen').width;

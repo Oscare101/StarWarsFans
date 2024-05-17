@@ -6,13 +6,13 @@ import {
   useColorScheme,
 } from 'react-native';
 import React, {memo, useState} from 'react';
-import colors from '../constants/colors';
-import {RootState} from '../redux';
+import colors from '../../constants/colors';
+import {RootState} from '../../redux';
 import {useDispatch, useSelector} from 'react-redux';
-import {StarWarsData} from '../constants/interfaces';
-import Icon from './Icon';
-import {GetDataRequest} from '../functions/actions';
-import {updateStarWarsData} from '../redux/starWarsDataSlice';
+import {StarWarsData} from '../../constants/interfaces';
+import Icon from '../icons/Icon';
+import {GetDataRequest} from '../../functions/actions';
+import {updateStarWarsData} from '../../redux/starWarsDataSlice';
 import PageCountBlock from './PageCountBlock';
 
 const width = Dimensions.get('screen').width;
