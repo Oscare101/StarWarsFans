@@ -38,3 +38,17 @@ export function GetUpdatedLikedCharacters(
     return [...likedCharacters, character];
   }
 }
+
+export function GetFilteredMaleCharacters(likedCharacters: any[]) {
+  return likedCharacters.filter((c: any) => c.gender === 'male');
+}
+
+export function GetFilteredFemaleCharacters(likedCharacters: any[]) {
+  return likedCharacters.filter((c: any) => c.gender === 'female');
+}
+
+export function GetFilteredOtherCharacters(likedCharacters: any[]) {
+  return likedCharacters.filter(
+    (c: any) => c.gender !== 'male' && c.gender !== 'female',
+  );
+}

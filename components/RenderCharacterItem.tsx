@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    marginVertical: width * 0.01,
   },
   heartButton: {
     alignItems: 'center',

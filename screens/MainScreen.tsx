@@ -82,7 +82,6 @@ export default function MainScreen({navigation}: any) {
               }}
             />
           )}
-          ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
         />
       ) : (
         <LoadingWarning />

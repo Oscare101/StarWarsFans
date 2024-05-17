@@ -11,6 +11,11 @@ import {RootState} from '../redux';
 import {useSelector} from 'react-redux';
 import colors from '../constants/colors';
 import Icon from './Icon';
+import {
+  GetFilteredFemaleCharacters,
+  GetFilteredMaleCharacters,
+  GetFilteredOtherCharacters,
+} from '../functions/functions';
 
 const width = Dimensions.get('screen').width;
 
@@ -22,9 +27,24 @@ export default function MainHeader() {
     (state: RootState) => state.likedCharacters,
   );
 
+  const data = [
+    {
+      title: 'male',
+      value: GetFilteredMaleCharacters(likedCharacters),
+    },
+    {
+      title: 'female',
+      value: GetFilteredFemaleCharacters(likedCharacters),
+    },
+    {
+      title: 'other',
+      value: GetFilteredOtherCharacters(likedCharacters),
+    },
+  ];
+
   return (
     <View style={[styles.header, {backgroundColor: colors[themeColor].bg}]}>
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <Icon
           icon="settings"
           color={colors[themeColor].main}
@@ -33,7 +53,28 @@ export default function MainHeader() {
       </TouchableOpacity>
       <Text style={[styles.title, {color: colors[themeColor].main}]}>
         Star Wars Characters
-      </Text>
+      </Text> */}
+      {data.map((item: any, index: number) => (
+        <TouchableOpacity
+          style={[
+            styles.likedBlock,
+            {
+              backgroundColor: colors[themeColor].card,
+              borderColor: colors[themeColor].grey,
+            },
+          ]}
+          key={index}
+          activeOpacity={0.8}
+          onPress={() => {}}>
+          <Text style={[styles.likedAmount, {color: colors[themeColor].main}]}>
+            {item.value.length}
+          </Text>
+          <Text
+            style={[styles.likedTitle, {color: colors[themeColor].comment}]}>
+            {item.title}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
@@ -44,9 +85,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.02,
+    paddingTop: width * 0.02,
+    gap: width * 0.02,
   },
   title: {
     fontSize: width * 0.05,
   },
+  likedBlock: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: width * 0.02,
+    borderWidth: 1,
+  },
+  likedAmount: {fontSize: width * 0.06},
+  likedTitle: {fontSize: width * 0.05, fontWeight: '300'},
 });

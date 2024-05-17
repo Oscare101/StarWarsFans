@@ -76,7 +76,7 @@ export default function CharacterInfoScreen({navigation, route}: any) {
         </Text>
         <Icon
           icon={liked ? 'heartFull' : 'heart'}
-          color={colors[themeColor].main}
+          color={liked ? colors[themeColor].accent : colors[themeColor].comment}
           size={width * 0.06}
         />
       </TouchableOpacity>
