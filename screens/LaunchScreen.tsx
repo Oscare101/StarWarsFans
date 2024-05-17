@@ -1,9 +1,4 @@
-import {
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import colors from '../constants/colors';
 import {useDispatch} from 'react-redux';

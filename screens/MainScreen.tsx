@@ -52,6 +52,7 @@ export default function MainScreen({navigation}: any) {
       <MainHeader />
       {starWarsData?.results?.length ? (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={starWarsData.results}
           renderItem={(item: any) => (
             <RenderCharacterItem
