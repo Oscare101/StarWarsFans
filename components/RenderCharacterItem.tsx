@@ -17,6 +17,7 @@ function RenderCharacterItem(props: {
   theme: Theme['value'];
   onLikeCharacter: any;
   liked: boolean;
+  onNavigation: any;
 }) {
   const characterInfo = [
     {icon: 'calendar', title: props.item.birth_year},
@@ -31,7 +32,8 @@ function RenderCharacterItem(props: {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={[styles.card, {backgroundColor: colors[props.theme].card}]}>
+      style={[styles.card, {backgroundColor: colors[props.theme].card}]}
+      onPress={props.onNavigation}>
       <View style={styles.column}>
         <View style={styles.rowBetween}>
           <TouchableOpacity

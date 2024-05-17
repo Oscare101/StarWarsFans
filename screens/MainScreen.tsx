@@ -23,7 +23,7 @@ import {updateLikedCharacters} from '../redux/likedCharacters';
 
 const width = Dimensions.get('screen').width;
 
-export default function MainScreen() {
+export default function MainScreen({navigation}: any) {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
@@ -75,6 +75,11 @@ export default function MainScreen() {
               liked={likedCharacters.find(
                 (c: any) => c.name === item.item.name,
               )}
+              onNavigation={() => {
+                navigation.navigate('CharacterInfoScreen', {
+                  character: item.item,
+                });
+              }}
             />
           )}
           ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
