@@ -16,9 +16,28 @@ export async function GetDataRequest(url?: StarWarsData['next']) {
         speciesResponses.map(response => response.json()),
       );
 
+      const filmsResponses = await Promise.all(
+        character.films.map((url: any) => fetch(url)),
+      );
+      const filmsData = await Promise.all(
+        filmsResponses.map(response => response.json()),
+      );
+
+      const starshipsResponses = await Promise.all(
+        character.starships.map((url: any) => fetch(url)),
+      );
+      const starshipsData = await Promise.all(
+        starshipsResponses.map(response => response.json()),
+      );
+
       return {
         ...character,
-        info: {homeworld: planetData, species: speciesData},
+        info: {
+          homeworld: planetData,
+          species: speciesData,
+          films: filmsData,
+          starships: starshipsData,
+        },
       };
     }),
   );

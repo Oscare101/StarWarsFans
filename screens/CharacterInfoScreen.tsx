@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -35,23 +36,47 @@ export default function CharacterInfoScreen({navigation, route}: any) {
       title: 'Species',
       value: character.info.species.map((i: any) => i.name).join(',') || '???',
     },
+    {
+      title: 'Movies',
+      value: character.info.films.map((i: any) => i.title).join('\n') || '???',
+    },
+    {
+      title: 'Starships',
+      value:
+        character.info.starships.map((i: any) => i.name).join('\n') || '???',
+    },
   ];
+
+  function RenderCharacterInfo({item}: any) {
+    return (
+      <View style={styles.characterInfoRow}>
+        <Text style={[styles.infoTitle, {color: colors[themeColor].grey}]}>
+          {item.title}
+        </Text>
+        <Text style={[styles.infoValue, {color: colors[themeColor].main}]}>
+          {item.value}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
       <Header title={character.name} action="back" />
       <View style={[styles.card, {backgroundColor: colors[themeColor].card}]}>
-        {info.map((item: any, index: number) => (
-          <View key={index} style={styles.characterInfoRow}>
-            <Text style={[styles.infoTitle, {color: colors[themeColor].grey}]}>
-              {item.title}
-            </Text>
-            <Text style={[styles.infoValue, {color: colors[themeColor].main}]}>
-              {item.value}
-            </Text>
-          </View>
-        ))}
+        <FlatList
+          data={info}
+          renderItem={RenderCharacterInfo}
+          ItemSeparatorComponent={() => (
+            <View
+              style={[
+                styles.line,
+                {backgroundColor: colors[themeColor].comment},
+              ]}
+            />
+          )}
+        />
       </View>
       <LikeBlock character={character} />
     </SafeAreaView>
@@ -82,5 +107,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   infoTitle: {fontSize: width * 0.05},
-  infoValue: {fontSize: width * 0.05},
+  infoValue: {fontSize: width * 0.05, textAlign: 'right'},
+  line: {
+    width: '100%',
+    height: 1,
+    marginVertical: width * 0.01,
+    opacity: 0.3,
+  },
 });
