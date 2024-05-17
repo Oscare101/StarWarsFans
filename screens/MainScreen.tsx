@@ -9,7 +9,7 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {GetDataRequest} from '../functions/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateStarWarsData} from '../redux/starWarsDataSlice';
@@ -45,16 +45,19 @@ export default function MainScreen() {
     GetData();
   }, []);
 
-  function LikeCharacter(character: any) {
-    if (likedCharacters.find((c: any) => c.name === character.name)) {
-      const filteredCharacters = likedCharacters.filter(
-        (c: any) => c.name !== character.name,
-      );
-      dispatch(updateLikedCharacters(filteredCharacters));
-    } else {
-      dispatch(updateLikedCharacters([...likedCharacters, character]));
-    }
-  }
+  const LikeCharacter = useCallback(
+    (character: any) => {
+      if (likedCharacters.find((c: any) => c.name === character.name)) {
+        const filteredCharacters = likedCharacters.filter(
+          (c: any) => c.name !== character.name,
+        );
+        dispatch(updateLikedCharacters(filteredCharacters));
+      } else {
+        dispatch(updateLikedCharacters([...likedCharacters, character]));
+      }
+    },
+    [likedCharacters],
+  );
 
   return (
     <SafeAreaView

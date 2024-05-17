@@ -5,14 +5,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {Theme} from '../constants/interfaces';
 import colors from '../constants/colors';
 import Icon from './Icon';
 
 const width = Dimensions.get('screen').width;
 
-export default function RenderCharacterItem(props: {
+function RenderCharacterItem(props: {
   item: any;
   theme: Theme['value'];
   onLikeCharacter: any;
@@ -118,3 +118,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default memo(RenderCharacterItem);

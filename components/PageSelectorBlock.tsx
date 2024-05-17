@@ -6,7 +6,7 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import colors from '../constants/colors';
 import {RootState} from '../redux';
 import {useDispatch, useSelector} from 'react-redux';
@@ -18,7 +18,7 @@ import PageCountBlock from './PageCountBlock';
 
 const width = Dimensions.get('screen').width;
 
-export default function PageSelectorBlock() {
+function PageSelectorBlock() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
@@ -28,6 +28,7 @@ export default function PageSelectorBlock() {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState<boolean>(false);
+  console.log('load');
 
   async function GetData(url?: StarWarsData['next']) {
     setLoading(true);
@@ -98,3 +99,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default memo(PageSelectorBlock);
