@@ -8,11 +8,13 @@ import {
   useColorScheme,
 } from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../redux';
 import colors from '../constants/colors';
 import Icon from '../components/Icon';
 import Header from '../components/Header';
+import {updateLikedCharacters} from '../redux/likedCharacters';
+import {GetUpdatedLikedCharacters} from '../functions/functions';
 
 const width = Dimensions.get('screen').width;
 
@@ -36,6 +38,19 @@ export default function CharacterInfoScreen({navigation, route}: any) {
     },
   ];
 
+  const liked: boolean = likedCharacters.find(
+    (c: any) => c.name === character.name,
+  );
+  const dispatch = useDispatch();
+
+  function LikeCharacter() {
+    dispatch(
+      updateLikedCharacters(
+        GetUpdatedLikedCharacters(likedCharacters, character),
+      ),
+    );
+  }
+
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
@@ -52,6 +67,19 @@ export default function CharacterInfoScreen({navigation, route}: any) {
           </View>
         ))}
       </View>
+      <TouchableOpacity
+        style={[styles.likeButton, {backgroundColor: colors[themeColor].card}]}
+        activeOpacity={0.8}
+        onPress={LikeCharacter}>
+        <Text style={[styles.likeTitle, {color: colors[themeColor].grey}]}>
+          {liked ? 'liked' : 'like'}
+        </Text>
+        <Icon
+          icon={liked ? 'heartFull' : 'heart'}
+          color={colors[themeColor].main}
+          size={width * 0.06}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -62,6 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    gap: width * 0.02,
   },
   card: {
     width: '92%',
@@ -70,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: width * 0.02,
     borderRadius: width * 0.02,
+    gap: width * 0.01,
   },
   characterInfoRow: {
     flexDirection: 'row',
@@ -77,8 +107,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
   },
-  infoTitle: {fontSize: width * 0.04},
-  infoValue: {fontSize: width * 0.04},
+  infoTitle: {fontSize: width * 0.05},
+  infoValue: {fontSize: width * 0.05},
+  likeButton: {
+    width: '92%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: width * 0.02,
+    borderRadius: width * 0.02,
+  },
+  likeTitle: {fontSize: width * 0.05},
 });
 
 const a = {

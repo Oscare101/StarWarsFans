@@ -24,3 +24,17 @@ export function MakePageArray(pagesAmount: number) {
   }
   return arr;
 }
+
+export function GetUpdatedLikedCharacters(
+  likedCharacters: any[],
+  character: any,
+) {
+  if (likedCharacters.find((c: any) => c.name === character.name)) {
+    const filteredCharacters = likedCharacters.filter(
+      (c: any) => c.name !== character.name,
+    );
+    return filteredCharacters;
+  } else {
+    return [...likedCharacters, character];
+  }
+}

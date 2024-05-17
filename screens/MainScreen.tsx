@@ -21,6 +21,7 @@ import PageSelectorBlock from '../components/PageSelectorBlock';
 import LoadingWarning from '../components/LoadingWarning';
 import {updateLikedCharacters} from '../redux/likedCharacters';
 import MainHeader from '../components/MainHeader';
+import {GetUpdatedLikedCharacters} from '../functions/functions';
 
 const width = Dimensions.get('screen').width;
 
@@ -48,14 +49,11 @@ export default function MainScreen({navigation}: any) {
 
   const LikeCharacter = useCallback(
     (character: any) => {
-      if (likedCharacters.find((c: any) => c.name === character.name)) {
-        const filteredCharacters = likedCharacters.filter(
-          (c: any) => c.name !== character.name,
-        );
-        dispatch(updateLikedCharacters(filteredCharacters));
-      } else {
-        dispatch(updateLikedCharacters([...likedCharacters, character]));
-      }
+      dispatch(
+        updateLikedCharacters(
+          GetUpdatedLikedCharacters(likedCharacters, character),
+        ),
+      );
     },
     [likedCharacters],
   );
