@@ -16,20 +16,32 @@ export default function RenderCharacterItem(props: {
   item: any;
   theme: Theme['value'];
 }) {
+  const characterInfo = [
+    {icon: 'calendar', title: props.item.birth_year},
+    {icon: 'gender', title: props.item.gender},
+    {icon: 'planet', title: props.item.info.homeworld.name},
+    {
+      icon: 'person',
+      title: props.item.info.species.map((i: any) => i.name).join(',') || '???',
+    },
+  ];
+
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       style={[styles.card, {backgroundColor: colors[props.theme].card}]}>
-      <TouchableOpacity style={styles.heartButton}>
-        <Icon
-          icon="heart"
-          color={colors[props.theme].main}
-          size={width * 0.06}
-        />
-      </TouchableOpacity>
-
       <View style={styles.column}>
         <View style={styles.rowBetween}>
-          <Text style={[styles.name, {color: colors[props.theme].main}]}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.heartButton}>
+            <Icon
+              icon="heart"
+              color={colors[props.theme].main}
+              size={width * 0.06}
+            />
+          </TouchableOpacity>
+          <Text
+            numberOfLines={1}
+            style={[styles.name, {color: colors[props.theme].main}]}>
             {props.item.name}
           </Text>
           <Icon
@@ -39,28 +51,23 @@ export default function RenderCharacterItem(props: {
           />
         </View>
         <View style={styles.rowBetween}>
-          <View style={styles.rowCenter}>
-            <Icon
-              icon="calendar"
-              color={colors[props.theme].main}
-              size={width * 0.04}
-            />
-            <Text
-              style={[styles.characterInfo, {color: colors[props.theme].main}]}>
-              {props.item.birth_year}
-            </Text>
-          </View>
-          <View style={styles.rowCenter}>
-            <Icon
-              icon="gender"
-              color={colors[props.theme].main}
-              size={width * 0.04}
-            />
-            <Text
-              style={[styles.characterInfo, {color: colors[props.theme].main}]}>
-              {props.item.gender}
-            </Text>
-          </View>
+          {characterInfo.map((info: any, index: number) => (
+            <View key={index} style={styles.rowCenter}>
+              <Icon
+                icon={info.icon}
+                color={colors[props.theme].comment}
+                size={width * 0.04}
+              />
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.characterInfo,
+                  {color: colors[props.theme].comment},
+                ]}>
+                {info.title}
+              </Text>
+            </View>
+          ))}
         </View>
       </View>
     </TouchableOpacity>
@@ -77,8 +84,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   heartButton: {
-    // height: '100%',
-    // width: width * 0.1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -94,14 +99,17 @@ const styles = StyleSheet.create({
   rowCenter: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flex: 1,
   },
   name: {
     fontSize: width * 0.05,
+    flex: 1,
+    marginLeft: width * 0.01,
   },
   characterInfo: {
     fontSize: width * 0.04,
     marginLeft: width * 0.01,
+    flex: 1,
   },
 });

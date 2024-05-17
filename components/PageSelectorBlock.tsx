@@ -22,7 +22,6 @@ export default function PageSelectorBlock() {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
-
   const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
   );
