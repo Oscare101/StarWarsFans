@@ -19,5 +19,6 @@ export interface IconName {
     | 'gender'
     | 'planet'
     | 'person'
-    | 'calendar';
+    | 'calendar'
+    | 'settings';
 }

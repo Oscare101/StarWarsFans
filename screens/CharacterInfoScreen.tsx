@@ -26,10 +26,32 @@ export default function CharacterInfoScreen({navigation, route}: any) {
     (state: RootState) => state.likedCharacters,
   );
 
+  const info = [
+    {title: 'Birth year', value: character.birth_year},
+    {title: 'Gender', value: character.gender},
+    {title: 'Home planet', value: character.info.homeworld.name},
+    {
+      title: 'Species',
+      value: character.info.species.map((i: any) => i.name).join(',') || '???',
+    },
+  ];
+
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
       <Header title={character.name} />
+      <View style={[styles.card, {backgroundColor: colors[themeColor].card}]}>
+        {info.map((item: any, index: number) => (
+          <View key={index} style={styles.characterInfoRow}>
+            <Text style={[styles.infoTitle, {color: colors[themeColor].grey}]}>
+              {item.title}
+            </Text>
+            <Text style={[styles.infoValue, {color: colors[themeColor].main}]}>
+              {item.value}
+            </Text>
+          </View>
+        ))}
+      </View>
     </SafeAreaView>
   );
 }
@@ -41,6 +63,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  card: {
+    width: '92%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: width * 0.02,
+    borderRadius: width * 0.02,
+  },
+  characterInfoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  infoTitle: {fontSize: width * 0.04},
+  infoValue: {fontSize: width * 0.04},
 });
 
 const a = {

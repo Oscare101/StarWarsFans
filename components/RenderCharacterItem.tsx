@@ -72,14 +72,14 @@ function RenderCharacterItem(props: {
             <View key={index} style={styles.rowCenter}>
               <Icon
                 icon={info.icon}
-                color={colors[props.theme].comment}
+                color={colors[props.theme].grey}
                 size={width * 0.04}
               />
               <Text
                 numberOfLines={1}
                 style={[
                   styles.characterInfo,
-                  {color: colors[props.theme].comment},
+                  {color: colors[props.theme].grey},
                 ]}>
                 {info.title}
               </Text>

@@ -42,7 +42,7 @@ function PageSelectorBlock() {
         styles.card,
         {
           backgroundColor: colors[themeColor].card,
-          borderColor: colors[themeColor].shadow,
+          borderColor: colors[themeColor].grey,
         },
       ]}>
       <TouchableOpacity

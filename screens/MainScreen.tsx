@@ -20,6 +20,7 @@ import RenderCharacterItem from '../components/RenderCharacterItem';
 import PageSelectorBlock from '../components/PageSelectorBlock';
 import LoadingWarning from '../components/LoadingWarning';
 import {updateLikedCharacters} from '../redux/likedCharacters';
+import MainHeader from '../components/MainHeader';
 
 const width = Dimensions.get('screen').width;
 
@@ -62,6 +63,7 @@ export default function MainScreen({navigation}: any) {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
+      <MainHeader />
       {starWarsData?.results?.length ? (
         <FlatList
           data={starWarsData.results}
