@@ -18,6 +18,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import Icon from '../icons/Icon';
 import {Character} from '../../constants/interfaces';
+import Header from '../global/Header';
 
 const width = Dimensions.get('screen').width;
 
@@ -46,20 +47,7 @@ function MainHeader() {
 
   return (
     <>
-      <View style={styles.row}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => navigation.navigate('SettingsScreen')}>
-          <Icon
-            icon="settings"
-            color={colors[themeColor].main}
-            size={width * 0.06}
-          />
-        </TouchableOpacity>
-        <Text style={[styles.title, {color: colors[themeColor].main}]}>
-          Star Wars Characters
-        </Text>
-      </View>
+      <Header title="Star Wars Characters" action="settings" />
 
       <View style={styles.row}>
         {data.map((item: any, index: number) => (

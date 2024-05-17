@@ -40,7 +40,7 @@ export default function CharacterInfoScreen({navigation, route}: any) {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      <Header title={character.name} />
+      <Header title={character.name} action="back" />
       <View style={[styles.card, {backgroundColor: colors[themeColor].card}]}>
         {info.map((item: any, index: number) => (
           <View key={index} style={styles.characterInfoRow}>

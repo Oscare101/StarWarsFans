@@ -13,7 +13,7 @@ export default function SettingsScreen() {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      <Header title="Settings" />
+      <Header title="Settings" action="back" />
       <ThemeBlock />
     </SafeAreaView>
   );

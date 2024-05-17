@@ -61,7 +61,7 @@ export default function LikesScreen({navigation, route}: any) {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
-      <Header title="Characters you liked" />
+      <Header title="Characters you liked" action="back" />
       <LikedPageSelectorBlock
         page={page}
         onSelect={(value: string) => setPage(value)}

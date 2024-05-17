@@ -15,12 +15,12 @@ import {useNavigation} from '@react-navigation/native';
 
 const width = Dimensions.get('screen').width;
 
-function Header(props: {title: string}) {
+function Header(props: {title: string; action: 'back' | 'settings'}) {
   const systemTheme = useColorScheme();
   const theme = useSelector((state: RootState) => state.theme);
   const themeColor: any = theme === 'system' ? systemTheme : theme;
 
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   return (
     <View style={[styles.header]}>
@@ -28,12 +28,16 @@ function Header(props: {title: string}) {
         activeOpacity={0.8}
         style={styles.button}
         onPress={() => {
-          navigation.goBack();
+          if (props.action === 'back') {
+            navigation.goBack();
+          } else {
+            navigation.navigate('SettingsScreen');
+          }
         }}>
         <Icon
-          icon="chevronLeft"
+          icon={props.action === 'back' ? 'chevronLeft' : 'settings'}
           color={colors[themeColor].main}
-          size={width * 0.09}
+          size={width * 0.08}
         />
       </TouchableOpacity>
       <Text
