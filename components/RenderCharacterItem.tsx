@@ -9,6 +9,7 @@ import React, {memo} from 'react';
 import {Theme} from '../constants/interfaces';
 import colors from '../constants/colors';
 import Icon from './Icon';
+import theme from '../redux/theme';
 
 const width = Dimensions.get('screen').width;
 
@@ -42,13 +43,22 @@ function RenderCharacterItem(props: {
             onPress={props.onLikeCharacter}>
             <Icon
               icon={props.liked ? 'heartFull' : 'heart'}
-              color={colors[props.theme].main}
+              color={
+                props.liked
+                  ? colors[props.theme].accent
+                  : colors[props.theme].comment
+              }
               size={width * 0.06}
             />
           </TouchableOpacity>
           <Text
             numberOfLines={1}
-            style={[styles.name, {color: colors[props.theme].main}]}>
+            style={[
+              styles.name,
+              {
+                color: colors[props.theme].main,
+              },
+            ]}>
             {props.item.name}
           </Text>
           <Icon
@@ -115,7 +125,7 @@ const styles = StyleSheet.create({
     marginLeft: width * 0.01,
   },
   characterInfo: {
-    fontSize: width * 0.04,
+    fontSize: width * 0.035,
     marginLeft: width * 0.01,
     flex: 1,
   },

@@ -32,7 +32,7 @@ export default function MainNavigation() {
           headerLeft: () => null,
           animationEnabled: true,
           gestureDirection: 'horizontal',
-          gestureEnabled: false,
+          gestureEnabled: true,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
         name="CharacterInfoScreen"
