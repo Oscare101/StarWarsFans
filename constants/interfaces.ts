@@ -10,5 +10,14 @@ export interface Theme {
 }
 
 export interface IconName {
-  value: 'heart' | 'heartFull' | 'chevronLeft' | 'chevronRight';
+  value:
+    | 'heart'
+    | 'heartFull'
+    | 'chevronLeft'
+    | 'chevronRight'
+    | 'open'
+    | 'gender'
+    | 'planet'
+    | 'person'
+    | 'calendar';
 }
