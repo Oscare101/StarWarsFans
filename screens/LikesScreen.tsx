@@ -3,6 +3,7 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
+  Text,
   useColorScheme,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
@@ -65,27 +66,33 @@ export default function LikesScreen({navigation, route}: any) {
         page={page}
         onSelect={(value: string) => setPage(value)}
       />
+      {GetFilteredCharacters()?.length ? (
+        <FlatList
+          data={GetFilteredCharacters()}
+          renderItem={(item: any) => (
+            <RenderCharacterItem
+              item={item.item}
+              theme={themeColor}
+              onLikeCharacter={() => {
+                LikeCharacter(item.item);
+              }}
+              liked={
+                !!likedCharacters.find((c: any) => c.name === item.item.name)
+              }
+              onNavigation={() => {
+                navigation.navigate('CharacterInfoScreen', {
+                  character: item.item,
+                });
+              }}
+            />
+          )}
+        />
+      ) : (
+        <Text style={[styles.emptyTitle, {color: colors[themeColor].comment}]}>
+          no liked characters yet
+        </Text>
+      )}
 
-      <FlatList
-        data={GetFilteredCharacters()}
-        renderItem={(item: any) => (
-          <RenderCharacterItem
-            item={item.item}
-            theme={themeColor}
-            onLikeCharacter={() => {
-              LikeCharacter(item.item);
-            }}
-            liked={
-              !!likedCharacters.find((c: any) => c.name === item.item.name)
-            }
-            onNavigation={() => {
-              navigation.navigate('CharacterInfoScreen', {
-                character: item.item,
-              });
-            }}
-          />
-        )}
-      />
       <ResetButton />
     </SafeAreaView>
   );
@@ -98,5 +105,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: width * 0.02,
+  },
+  emptyTitle: {
+    flex: 1,
+    fontSize: width * 0.04,
   },
 });
