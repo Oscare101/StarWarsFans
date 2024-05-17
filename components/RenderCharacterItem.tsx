@@ -15,6 +15,8 @@ const width = Dimensions.get('screen').width;
 export default function RenderCharacterItem(props: {
   item: any;
   theme: Theme['value'];
+  onLikeCharacter: any;
+  liked: boolean;
 }) {
   const characterInfo = [
     {icon: 'calendar', title: props.item.birth_year},
@@ -32,9 +34,12 @@ export default function RenderCharacterItem(props: {
       style={[styles.card, {backgroundColor: colors[props.theme].card}]}>
       <View style={styles.column}>
         <View style={styles.rowBetween}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.heartButton}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.heartButton}
+            onPress={props.onLikeCharacter}>
             <Icon
-              icon="heart"
+              icon={props.liked ? 'heartFull' : 'heart'}
               color={colors[props.theme].main}
               size={width * 0.06}
             />

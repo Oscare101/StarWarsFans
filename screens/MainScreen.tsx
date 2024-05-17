@@ -19,6 +19,7 @@ import {StarWarsData, Theme} from '../constants/interfaces';
 import RenderCharacterItem from '../components/RenderCharacterItem';
 import PageSelectorBlock from '../components/PageSelectorBlock';
 import LoadingWarning from '../components/LoadingWarning';
+import {updateLikedCharacters} from '../redux/likedCharacters';
 
 const width = Dimensions.get('screen').width;
 
@@ -28,6 +29,9 @@ export default function MainScreen() {
   const themeColor: Theme['value'] = theme === 'system' ? systemTheme : theme;
   const starWarsData: StarWarsData = useSelector(
     (state: RootState) => state.starWarsData,
+  );
+  const likedCharacters: any[] = useSelector(
+    (state: RootState) => state.likedCharacters,
   );
 
   const dispatch = useDispatch();
@@ -41,6 +45,17 @@ export default function MainScreen() {
     GetData();
   }, []);
 
+  function LikeCharacter(character: any) {
+    if (likedCharacters.find((c: any) => c.name === character.name)) {
+      const filteredCharacters = likedCharacters.filter(
+        (c: any) => c.name !== character.name,
+      );
+      dispatch(updateLikedCharacters(filteredCharacters));
+    } else {
+      dispatch(updateLikedCharacters([...likedCharacters, character]));
+    }
+  }
+
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors[themeColor].bg}]}>
@@ -48,7 +63,16 @@ export default function MainScreen() {
         <FlatList
           data={starWarsData.results}
           renderItem={(item: any) => (
-            <RenderCharacterItem item={item.item} theme={themeColor} />
+            <RenderCharacterItem
+              item={item.item}
+              theme={themeColor}
+              onLikeCharacter={() => {
+                LikeCharacter(item.item);
+              }}
+              liked={likedCharacters.find(
+                (c: any) => c.name === item.item.name,
+              )}
+            />
           )}
           ItemSeparatorComponent={() => <View style={{height: width * 0.01}} />}
         />
