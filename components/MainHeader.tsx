@@ -10,12 +10,12 @@ import React from 'react';
 import {RootState} from '../redux';
 import {useSelector} from 'react-redux';
 import colors from '../constants/colors';
-import Icon from './Icon';
 import {
   GetFilteredFemaleCharacters,
   GetFilteredMaleCharacters,
   GetFilteredOtherCharacters,
 } from '../functions/functions';
+import {useNavigation} from '@react-navigation/native';
 
 const width = Dimensions.get('screen').width;
 
@@ -26,7 +26,7 @@ export default function MainHeader() {
   const likedCharacters: any[] = useSelector(
     (state: RootState) => state.likedCharacters,
   );
-
+  const navigation: any = useNavigation();
   const data = [
     {
       title: 'male',
@@ -43,7 +43,8 @@ export default function MainHeader() {
   ];
 
   return (
-    <View style={[styles.header, {backgroundColor: colors[themeColor].bg}]}>
+    <>
+      {/* TODO */}
       {/* <TouchableOpacity>
         <Icon
           icon="settings"
@@ -54,28 +55,33 @@ export default function MainHeader() {
       <Text style={[styles.title, {color: colors[themeColor].main}]}>
         Star Wars Characters
       </Text> */}
-      {data.map((item: any, index: number) => (
-        <TouchableOpacity
-          style={[
-            styles.likedBlock,
-            {
-              backgroundColor: colors[themeColor].card,
-              borderColor: colors[themeColor].grey,
-            },
-          ]}
-          key={index}
-          activeOpacity={0.8}
-          onPress={() => {}}>
-          <Text style={[styles.likedAmount, {color: colors[themeColor].main}]}>
-            {item.value.length}
-          </Text>
-          <Text
-            style={[styles.likedTitle, {color: colors[themeColor].comment}]}>
-            {item.title}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+      <View style={[styles.header, {backgroundColor: colors[themeColor].bg}]}>
+        {data.map((item: any, index: number) => (
+          <TouchableOpacity
+            style={[
+              styles.likedBlock,
+              {
+                backgroundColor: colors[themeColor].card,
+                borderColor: colors[themeColor].grey,
+              },
+            ]}
+            key={index}
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('LikesScreen', {page: item.title});
+            }}>
+            <Text
+              style={[styles.likedAmount, {color: colors[themeColor].main}]}>
+              {item.value.length}
+            </Text>
+            <Text
+              style={[styles.likedTitle, {color: colors[themeColor].comment}]}>
+              {item.title}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </>
   );
 }
 
