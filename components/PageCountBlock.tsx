@@ -33,7 +33,7 @@ export default function PageCountBlock() {
               : colors[themeColor].comment,
           },
         ]}>
-        {currentPage ? props.page : '_'}
+        {currentPage ? props.page : '•'}
       </Text>
     );
   }
